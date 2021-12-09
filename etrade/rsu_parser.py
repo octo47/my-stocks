@@ -1,6 +1,6 @@
 import csv
 import typing as t
-from converters import us_to_uk_date, dollars_to_number
+from converters import us_to_uk_date_str, dollars_to_number
 
 
 def convert(input_file: t.IO):
@@ -10,7 +10,7 @@ def convert(input_file: t.IO):
         if row['Record Type'] == 'Grant':
             symbol = row['Symbol']
         if row['Record Type'] == 'Vest Schedule':
-            date = us_to_uk_date(row['Vest Date'])
+            date = us_to_uk_date_str(row['Vest Date'])
             grant = "%s/%s" % (row['Grant Number'], row['Vest Period'])
             released = int(row['Released Qty'])
             # skip vested only lines

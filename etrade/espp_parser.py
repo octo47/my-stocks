@@ -1,6 +1,6 @@
 import csv
 import typing as t
-from converters import us_to_uk_date, dollars_to_number
+from converters import us_to_uk_date_str, dollars_to_number
 
 
 def convert(input_file: t.IO):
@@ -12,6 +12,6 @@ def convert(input_file: t.IO):
             symbol = row['Symbol']
             price = dollars_to_number(row['Purchase Price'])
         if row['Record Type'] == 'Event' and row['Event Type'] == "PURCHASE":
-            date = us_to_uk_date(row['Date'])
+            date = us_to_uk_date_str(row['Date'])
             released = int(row['Qty'])
             print("BUY %s %s %d %f 0" % (date, symbol, released, price))
