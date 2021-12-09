@@ -16,5 +16,8 @@ def convert(input_file: t.IO):
             # skip vested only lines
             if released < 1:
                 continue
-            total = dollars_to_number(next(csv_reader)['Taxable Gain'])
-            print("BUY %s %s %d %f 0" % (date, symbol, released, total / float(released)))
+            taxes_paid = dollars_to_number(row['Total Taxes Paid'])
+            total_paid = dollars_to_number(next(csv_reader)['Taxable Gain'])
+            price = total_paid / float(released)
+            acquired = (total_paid - taxes_paid)/price
+            print("BUY %s %s %d %f 0" % (date, symbol, acquired, price))
