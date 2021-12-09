@@ -20,4 +20,4 @@ def convert(input_file: t.IO):
             total_paid = dollars_to_number(next(csv_reader)['Taxable Gain'])
             price = total_paid / float(released)
             acquired = (total_paid - taxes_paid)/price
-            print("BUY %s %s %d %f 0" % (date, symbol, acquired, price))
+            print("BUY %s %s %d %f 0" % (date, symbol, released, price))
